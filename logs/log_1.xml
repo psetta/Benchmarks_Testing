@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<root>
+	<execucion arg0="1000000" arg1="100">
+		<script nome="c-1-0.0.1-SNAPSHOT-standalone.jar">
+			0.620000123978s
+		</script>
+		<script nome="p-1.py">
+			0.0370001792908s
+		</script>
+		<script nome="r-1-vector-list.rkt">
+			0.331000089645s
+		</script>
+		<script nome="r-1-vector.exe">
+			0.210000038147s
+		</script>
+		<script nome="r-1-vector.rkt">
+			0.315999984741s
+		</script>
+		<script nome="r-1.rkt">
+			0.321000099182s
+		</script>
+	</execucion>
+	<execucion arg0="1000000" arg1="10100">
+		<script nome="c-1-0.0.1-SNAPSHOT-standalone.jar">
+			0.703999996185s
+		</script>
+		<script nome="p-1.py">
+			0.0499999523163s
+		</script>
+		<script nome="r-1-vector-list.rkt">
+			0.333000183105s
+		</script>
+		<script nome="r-1-vector.exe">
+			0.22000002861s
+		</script>
+		<script nome="r-1-vector.rkt">
+			0.323999881744s
+		</script>
+		<script nome="r-1.rkt">
+			0.348999977112s
+		</script>
+	</execucion>
+	<execucion arg0="1000000" arg1="20100">
+		<script nome="c-1-0.0.1-SNAPSHOT-standalone.jar">
+			0.797999858856s
+		</script>
+		<script nome="p-1.py">
+			0.066999912262s
+		</script>
+		<script nome="r-1-vector-list.rkt">
+			0.357999801636s
+		</script>
+		<script nome="r-1-vector.exe">
+			0.22200012207s
+		</script>
+		<script nome="r-1-vector.rkt">
+			0.351000070572s
+		</script>
+		<script nome="r-1.rkt">
+			0.348000049591s
+		</script>
+	</execucion>
+	<execucion arg0="1000000" arg1="30100">
+		<script nome="c-1-0.0.1-SNAPSHOT-standalone.jar">
+			0.865000009537s
+		</script>
+		<script nome="p-1.py">
+			0.0839998722076s
+		</script>
+		<script nome="r-1-vector-list.rkt">
+			0.354000091553s
+		</script>
+		<script nome="r-1-vector.exe">
+			0.239000082016s
+		</script>
+		<script nome="r-1-vector.rkt">
+			0.358999967575s
+		</script>
+		<script nome="r-1.rkt">
+			0.341000080109s
+		</script>
+	</execucion>
+	<execucion arg0="1000000" arg1="40100">
+		<script nome="c-1-0.0.1-SNAPSHOT-standalone.jar">
+			0.924999952316s
+		</script>
+		<script nome="p-1.py">
+			0.0950000286102s
+		</script>
+		<script nome="r-1-vector-list.rkt">
+			0.370000123978s
+		</script>
+		<script nome="r-1-vector.exe">
+			0.265000104904s
+		</script>
+		<script nome="r-1-vector.rkt">
+			0.361999988556s
+		</script>
+		<script nome="r-1.rkt">
+			0.355000019073s
+		</script>
+	</execucion>
+	<execucion arg0="1000000" arg1="50100">
+		<script nome="c-1-0.0.1-SNAPSHOT-standalone.jar">
+			0.945999860764s
+		</script>
+		<script nome="p-1.py">
+			0.130000114441s
+		</script>
+		<script nome="r-1-vector-list.rkt">
+			0.419999837875s
+		</script>
+		<script nome="r-1-vector.exe">
+			0.256000041962s
+		</script>
+		<script nome="r-1-vector.rkt">
+			0.388000011444s
+		</script>
+		<script nome="r-1.rkt">
+			0.388999938965s
+		</script>
+	</execucion>
+	<execucion arg0="1000000" arg1="60100">
+		<script nome="c-1-0.0.1-SNAPSHOT-standalone.jar">
+			0.96799993515s
+		</script>
+		<script nome="p-1.py">
+			0.12299990654s
+		</script>
+		<script nome="r-1-vector-list.rkt">
+			0.403000116348s
+		</script>
+		<script nome="r-1-vector.exe">
+			0.261999845505s
+		</script>
+		<script nome="r-1-vector.rkt">
+			0.382999897003s
+		</script>
+		<script nome="r-1.rkt">
+			0.388999938965s
+		</script>
+	</execucion>
+	<execucion arg0="1000000" arg1="70100">
+		<script nome="c-1-0.0.1-SNAPSHOT-standalone.jar">
+			0.928999900818s
+		</script>
+		<script nome="p-1.py">
+			0.137000083923s
+		</script>
+		<script nome="r-1-vector-list.rkt">
+			0.37299990654s
+		</script>
+		<script nome="r-1-vector.exe">
+			0.242000102997s
+		</script>
+		<script nome="r-1-vector.rkt">
+			0.368000030518s
+		</script>
+		<script nome="r-1.rkt">
+			0.369999885559s
+		</script>
+	</execucion>
+	<execucion arg0="1000000" arg1="80100">
+		<script nome="c-1-0.0.1-SNAPSHOT-standalone.jar">
+			0.980999946594s
+		</script>
+		<script nome="p-1.py">
+			0.145999908447s
+		</script>
+		<script nome="r-1-vector-list.rkt">
+			0.381999969482s
+		</script>
+		<script nome="r-1-vector.exe">
+			0.273999929428s
+		</script>
+		<script nome="r-1-vector.rkt">
+			0.370000123978s
+		</script>
+		<script nome="r-1.rkt">
+			0.388000011444s
+		</script>
+	</execucion>
+	<execucion arg0="1000000" arg1="90100">
+		<script nome="c-1-0.0.1-SNAPSHOT-standalone.jar">
+			1.05100011826s
+		</script>
+		<script nome="p-1.py">
+			0.179000139236s
+		</script>
+		<script nome="r-1-vector-list.rkt">
+			0.406000137329s
+		</script>
+		<script nome="r-1-vector.exe">
+			0.278000116348s
+		</script>
+		<script nome="r-1-vector.rkt">
+			0.438999891281s
+		</script>
+		<script nome="r-1.rkt">
+			0.43799996376s
+		</script>
+	</execucion>
+</root>
