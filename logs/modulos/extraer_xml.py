@@ -5,28 +5,29 @@ import os
 import re
 
 #DIRECTORIO DOS LOGS
-dir_log = ".."
 
-doc_list = os.listdir(dir_log)
-doc_list = filter(lambda x: re.findall("log.+\.xml",x),doc_list)
+def extraer_xml(dir_log):
 
-benchmark_info = []
+	doc_list = os.listdir(dir_log)
+	doc_list = filter(lambda x: re.findall("log.+\.xml",x),doc_list)
 
-for doc in doc_list:
-	xml = x.xml2element_list(doc)
-	datos = x.xpath_xmllist("root/execucion",xml,True)
-	for dato in datos:
-		if dato.name == "execucion":
-			size = dato.attributes["arg1"][0]
-		else:
-			benchmark_info.append(
-							[dato.attributes["nome"][0].split('"')[1],
-							size.split('"')[1],
-							re.findall("(.+)s",dato.value)[0]]
-							)
+	benchmark_info = []
 
-#benchmark_info = sorted(benchmark_info,key=lambda x: int(x[1]))
-benchmark_info = sorted(benchmark_info,key=lambda x: x[0])
+	for doc in doc_list:
+		xml = x.xml2element_list(dir_log+"/"+doc)
+		datos = x.xpath_xmllist("root/execucion",xml,True)
+		for dato in datos:
+			if dato.name == "execucion":
+				size = dato.attributes["arg1"][0]
+			else:
+				benchmark_info.append(
+								[dato.attributes["nome"][0].split('"')[1],
+								size.split('"')[1],
+								re.findall("(.+)s",dato.value)[0]]
+								)
 
-for i in benchmark_info:
-	print i
+	benchmark_info = sorted(benchmark_info,key=lambda x: x[0])
+	
+	return benchmark_info
+
+#extraer_xml(".")
