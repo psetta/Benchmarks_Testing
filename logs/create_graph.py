@@ -3,9 +3,17 @@
 import modulos.extraer_xml as ext
 
 import pygame
+import os
+import sys
 from pygame.locals import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
+
+try:
+	if os.name == 'nt' and sys.getwindowsversion()[0] >= 6:
+		ctypes.windll.user32.SetProcessDPIAware()
+except:
+	pass
 
 #CREAR GRÁFICA EN OPENGL
 
@@ -60,6 +68,19 @@ def main():
 	pygame.display.set_caption("Grafica_OpenGL")
 	init_gl()
 	
+	zoom = 1
+	
+	#CREAR LISTAS DE OPENGL
+	
+	ID_LISTA_TEXTO = glGenLists(1)
+	crear_gllist_texto(ID_LISTA_TEXTO)
+	
+	ID_LISTA_LINHAS = glGenLists(1)
+	crear_gllist_linhas(ID_LISTA_LINHAS)
+	
+	ID_LISTA_GRAFICA = glGenLists(1)
+	crear_gllist_grafica(ID_LISTA_GRAFICA)
+	
 	while True:
 	
 		reloj = pygame.time.Clock()
@@ -68,29 +89,18 @@ def main():
 		
 		limpiar_ventana()
 		
-		#DEBUXAR
+		#DEBUXAR #########################
+		##################################
 		
 			#LINHAS
+		glCallList(ID_LISTA_LINHAS)
+		
+			#GRAFICA
 			
-		color_linha = [1,1,0,0.6]
-		for script in dict_xml:
-			vertices = sorted(dict_xml[script],key=lambda x: float(x[0]))
-			debuxar_linha(vertices,color_linha)
-			debuxar_puntos(vertices,color_linha[:3]+[1])
-			color_linha[2] += 0.2
-			color_linha[1] -= 0.1
-			color_linha[0] -= 0.2
-			color_linha[2] = min(color_linha[2],1)
-			color_linha[1] = max(color_linha[1],0)
-			color_linha[0] = max(color_linha[0],0)
+		glCallList(ID_LISTA_GRAFICA)
 		
-			#EJE X
-		
-		debuxar_linha([[0,EJE_Y[0]],[0,EJE_Y[1]]],[1,1,1,1])
-		
-			#EJE Y
-			
-		debuxar_linha([[EJE_X[0],0],[EJE_X[1],0]],[1,1,1,1])
+			#TEXTO
+		glCallList(ID_LISTA_TEXTO)
 		
 		#############################################################
 		#EVENTOS ####################################################
@@ -98,8 +108,24 @@ def main():
 		
 		zoom = (GL_X_INICIAL[1]/GL_X[1])
 		
-		#TECLAS ######
+		#POSICIÓN RATÓN
 		
+		pos_mouse = pygame.mouse.get_pos()
+		
+		pos_mouse_gl = [
+				(pos_mouse[0]*(GL_X[1]-GL_X[0])/ANCHO_VENTANA-(pos_camara[0]-GL_X[0])),
+				((GL_Y[1]-GL_Y[0])-(pos_mouse[1]*(GL_Y[1]-GL_Y[0])/ALTO_VENTANA)-(pos_camara[1]-GL_Y[0]))
+				]
+				
+		if (EJE_X[0] < pos_mouse_gl[0] < EJE_X[1] and
+				EJE_Y[0] < pos_mouse_gl[1] < EJE_Y[1]):
+			vertices_linhas = [[EJE_X[0],pos_mouse_gl[1]],[pos_mouse_gl[0],
+								pos_mouse_gl[1]],[pos_mouse_gl[0],EJE_Y[0]]]
+			debuxar_linha(vertices_linhas,[1,1,1,0.4])
+			drawText(pos_mouse_gl[0], pos_mouse_gl[1], 
+						str([round(x,2) for x in pos_mouse_gl]), 20)
+		
+		#TECLAS ######
 		tecla_pulsada = pygame.key.get_pressed()
 		
 		if (tecla_pulsada[K_UP] or tecla_pulsada[K_w]):
@@ -116,8 +142,7 @@ def main():
 		
 		for event in pygame.event.get():
 		
-			#RATÓN
-		
+			#RODA RATÓN
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				if event.button == 4:
 					if zoom < 2:
@@ -126,14 +151,13 @@ def main():
 						GL_Y[0] += EJE_Y_AUM/(10*zoom)
 						GL_Y[1] -= EJE_Y_AUM/(10*zoom)
 				if event.button == 5:
-					if zoom > 0.8:
+					if zoom > 1:
 						GL_X[0] -= EJE_X_AUM/(10*zoom)
 						GL_X[1] += EJE_X_AUM/(10*zoom)
 						GL_Y[0] -= EJE_Y_AUM/(10*zoom)
 						GL_Y[1] += EJE_Y_AUM/(10*zoom)
 						
 			#TECLAS
-		
 			if event.type == pygame.KEYDOWN:
 				
 				if event.key == pygame.K_RETURN:
@@ -141,20 +165,27 @@ def main():
 					GL_X,GL_Y = GL_X_INICIAL[:],GL_Y_INICIAL[:]
 					
 			#QUIT
-		
 			if event.type == pygame.QUIT:
 				pygame.quit()
 				return
 				
 		#ACTUALIZAR VENTANA ######
-		
 		pygame.display.flip()
-				
+		
 		reloj.tick(60)
 
 ##############################################################
 #OPENGL	######################################################
 ##############################################################
+
+def drawText(x, y, text, tamanho):                                                
+	position = (x, y, 0)                                                       
+	font = pygame.font.Font(None, int(tamanho))                                          
+	textSurface = font.render(text, True, (255,255,255,255), (0,0,0,0))                                   
+	textData = pygame.image.tostring(textSurface, "RGBA", True)              
+	glRasterPos3d(*position)                                                
+	glDrawPixels(textSurface.get_width(), textSurface.get_height(),         
+					GL_RGBA, GL_UNSIGNED_BYTE, textData)   
 
 def init_gl():
 	glViewport(0, 0, ANCHO_VENTANA, ALTO_VENTANA)
@@ -187,11 +218,59 @@ def debuxar_linha(vertices,color):
 def debuxar_puntos(puntos,color):
 	glLoadIdentity()
 	glPointSize(2)
-	glColor4f(color[0],color[1],color[2],color[3])
+	glColor4f(*color)
 	glBegin(GL_POINTS)
 	for p in puntos:
 		glVertex2f(float(p[0]), float(p[1]))
 	glEnd()
 	
+def debuxar_rect(vertices,color):
+	glLoadIdentity()
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
+	glColor4f(*color)
+	glBegin(GL_POLYGON)
+	for vertice in vertices:
+		glVertex2f(vertice[0],vertice[1])
+	glEnd()
+	
+def crear_gllist_texto(id):
+	glNewList(id, GL_COMPILE)
+	glLoadIdentity()
+	for x in range(int(EJE_X[0]),int(EJE_X[1])+1,int((EJE_X[1]-EJE_X[0])/10)):
+		debuxar_linha([[x,EJE_Y_AUM/10],[x,EJE_Y[0]]],[1,1,1,1])
+		drawText(x,-EJE_Y_AUM/3,str(x),16)	
+	for y in range(int(EJE_Y[0]),int(EJE_Y[1])+1,max(1,int((EJE_Y[1]-EJE_Y[0])/10))):
+		debuxar_linha([[EJE_X_AUM/10,y],[EJE_X[0],y]],[1,1,1,1])
+		drawText(-EJE_X_AUM/5,y,str(y),16)
+	glEndList()
+	
+def crear_gllist_linhas(id):
+	glNewList(id, GL_COMPILE)
+	glLoadIdentity()
+	color_linha = [1,1,0,0.6]
+	for script in dict_xml:
+		vertices = sorted(dict_xml[script],key=lambda x: float(x[0]))
+		debuxar_linha(vertices,color_linha)
+		debuxar_puntos(vertices,color_linha[:3]+[1])
+		color_linha[2] += 0.2
+		color_linha[1] -= 0.1
+		color_linha[0] -= 0.2
+		color_linha[2] = min(color_linha[2],1)
+		color_linha[1] = max(color_linha[1],0)
+		color_linha[0] = max(color_linha[0],0)
+	glEndList()
+	
+def crear_gllist_grafica(id):
+	glNewList(id, GL_COMPILE)
+	glLoadIdentity()
+	vertices_grafica = [[EJE_X[0],EJE_Y[0]],
+						[EJE_X[1],EJE_Y[0]],
+						[EJE_X[1],EJE_Y[1]],
+						[EJE_X[0],EJE_Y[1]]]	
+	debuxar_rect(vertices_grafica,[0.5,0.5,0.5,0.1])
+	debuxar_linha([[0,EJE_Y[0]],[0,EJE_Y[1]]],[1,1,1,1])
+	debuxar_linha([[EJE_X[0],0],[EJE_X[1],0]],[1,1,1,1])
+	glEndList()
+
 if __name__ == '__main__':
 	main()
