@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<root>
+	<execucion arg0="1000000" arg1="1000">
+		<script nome="clojure-1.jar">
+			0.639999866486s
+		</script>
+		<script nome="python-1.py">
+			0.0329999923706s
+		</script>
+		<script nome="racket-1.exe">
+			0.200000047684s
+		</script>
+		<script nome="racket-1.rkt">
+			0.316999912262s
+		</script>
+	</execucion>
+</root>

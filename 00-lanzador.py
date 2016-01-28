@@ -4,22 +4,22 @@ import os
 import re
 import time
 
-#DIRECTORIO DONDE SE GARDAN OS LOGS
-dir_log = "logs"
-
 #DIRECTORIO DONDE ESTAN OS SCRIPTS A EXECUTAR
-dir_scripts = "scripts"
+dir_scripts = raw_input("directorio dos scripts a lanzar: ")
 
-script_list = os.listdir("scripts")
+#DIRECTORIO DONDE SE GARDAN OS LOGS
+dir_log = raw_input("directorio donde gardar os logs: ")
+
+script_list = os.listdir(dir_scripts)
 
 #ARGUMENTOS A PASAR AO EXECUTAR OS SCRIPTS
-args = [1000000, 5000000]
+args = [2000]
 
 #VOLTAS QUE DA O BUCLE
-voltas = 1
+voltas = 10
 
 #INCREMENTO DOS ARGUMENTOS EN CADA VOLTA
-incremento = [0, 100000]
+incremento = [2000]
 
 #NOME DO LOG A CREAR
 doc_log = "log_0.xml"
