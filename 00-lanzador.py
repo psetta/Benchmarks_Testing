@@ -58,14 +58,21 @@ for volta in range(voltas):
 		elif formato == ".exe":
 			app = "start /WAIT"
 		
-		command = 'python timecmd.py "'+app+(' ' if app else '')+dir_scripts+"/"+script+' '+" ".join(map(str,args))+'"'
-		time_exec = os.popen(command).read()
-		print "\t\t"+command
-		print "\t\t"+time_exec,
+		try:
+			command = 'python timecmd.py "'+app+(' ' if app else '')+dir_scripts+"/"+script+' '+" ".join(map(str,args))+'"'
+			time_exec = os.popen(command).read()
+			print "\t\t"+command
+			print "\t\t"+time_exec,
 		
-		log.write('\t\t<script nome="'+script+'">\n')
-		log.write('\t\t\t'+time_exec)
-		log.write('\t\t</script>\n')
+			log.write('\t\t<script nome="'+script+'">\n')
+			log.write('\t\t\t'+time_exec)
+			log.write('\t\t</script>\n')
+		except:
+			print "\t\t"+command
+			print "\t\t"+"error",
+			log.write('\t\t<script nome="'+script+'">\n')
+			log.write('\t\t\t'+"error")
+			log.write('\t\t</script>\n')
 		
 		time.sleep(3)
 		
