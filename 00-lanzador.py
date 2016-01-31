@@ -5,27 +5,31 @@ import re
 import time
 
 #DIRECTORIO DONDE ESTAN OS SCRIPTS A EXECUTAR
-dir_scripts = raw_input("directorio dos scripts a lanzar: ")
+print "scripts:"
+for dir in os.listdir("scripts"):
+	print "\t- "+dir
+dir_scripts0 = raw_input(">>> scripts dir: scripts/")
 
 #DIRECTORIO DONDE SE GARDAN OS LOGS
-dir_log = raw_input("directorio donde gardar os logs: ")
+dir_log = "logs"
 
-script_list = os.listdir(dir_scripts)
+script_list = os.listdir("scripts/"+dir_scripts0)
+dir_scripts = "scripts"+dir_scripts0
 
 #ARGUMENTOS A PASAR AO EXECUTAR OS SCRIPTS
 args = [2000]
 
 #VOLTAS QUE DA O BUCLE
-voltas = 10
+voltas = 5
 
 #INCREMENTO DOS ARGUMENTOS EN CADA VOLTA
 incremento = [2000]
 
 #NOME DO LOG A CREAR
-doc_log = "log_0.xml"
+doc_log = "log_"+dir_scripts0+"_"+"0.xml"
 cont_log = 1
 while os.path.exists(dir_log+"/"+doc_log):
-	doc_log = "log_"+str(cont_log)+".xml"
+	doc_log = "log_"+dir_scripts0+"_"+str(cont_log)+".xml"
 	cont_log += 1
 
 log = open(dir_log+"/"+doc_log, "w")
@@ -69,6 +73,7 @@ for volta in range(voltas):
 			log.write('\t\t</script>\n')
 		except:
 			print "\t\t"+command
+			print "\t\tCommand ERROR"
 			print "\t\t"+"error",
 			log.write('\t\t<script nome="'+script+'">\n')
 			log.write('\t\t\t'+"error")
