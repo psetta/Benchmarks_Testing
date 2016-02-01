@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<root>
+	<execucion arg0="20000">
+		<script nome="clojure-factorial.jar">
+			0.84299993515s		</script>
+		<script nome="python-factorial.py">
+			0.254999876022s		</script>
+		<script nome="racket-factorial-aux.rkt">
+			0.90499997139s		</script>
+		<script nome="racket-factorial-tail.rkt">
+			0.865999937057s		</script>
+	</execucion>
+	<execucion arg0="30000">
+		<script nome="clojure-factorial.jar">
+			1.05700016022s		</script>
+		<script nome="python-factorial.py">
+			0.503000020981s		</script>
+		<script nome="racket-factorial-aux.rkt">
+			1.58299994469s		</script>
+		<script nome="racket-factorial-tail.rkt">
+			1.50100016594s		</script>
+	</execucion>
+	<execucion arg0="40000">
+		<script nome="clojure-factorial.jar">
+			1.27800011635s		</script>
+		<script nome="python-factorial.py">
+			1.14499998093s		</script>
+		<script nome="racket-factorial-aux.rkt">
+			2.76999998093s		</script>
+		<script nome="racket-factorial-tail.rkt">
+			2.47200012207s		</script>
+	</execucion>
+	<execucion arg0="50000">
+		<script nome="clojure-factorial.jar">
+			1.52800011635s		</script>
+		<script nome="python-factorial.py">
+			1.98699998856s		</script>
+		<script nome="racket-factorial-aux.rkt">
+			5.23399996758s		</script>
+		<script nome="racket-factorial-tail.rkt">
+			4.70899987221s		</script>
+	</execucion>
+	<execucion arg0="60000">
+		<script nome="clojure-factorial.jar">
+			2.15100002289s		</script>
+		<script nome="python-factorial.py">
+			3.18099999428s		</script>
+		<script nome="racket-factorial-aux.rkt">
+			7.79299998283s		</script>
+		<script nome="racket-factorial-tail.rkt">
+			7.2650001049s		</script>
+	</execucion>
+	<execucion arg0="70000">
+		<script nome="clojure-factorial.jar">
+			2.46700000763s		</script>
+		<script nome="python-factorial.py">
+			4.71300005913s		</script>
+		<script nome="racket-factorial-aux.rkt">
+			11.2020001411s		</script>
+		<script nome="racket-factorial-tail.rkt">
+			10.1370000839s		</script>
+	</execucion>
+	<execucion arg0="80000">
+		<script nome="clojure-factorial.jar">
+			2.77200007439s		</script>
+		<script nome="python-factorial.py">
+			6.17900013924s		</script>
+		<script nome="racket-factorial-aux.rkt">
+			14.9319999218s		</script>
+		<script nome="racket-factorial-tail.rkt">
+			13.4120001793s		</script>
+	</execucion>
+	<execucion arg0="90000">
+		<script nome="clojure-factorial.jar">
+			3.22100019455s		</script>
+		<script nome="python-factorial.py">
+			8.07899999619s		</script>
+		<script nome="racket-factorial-aux.rkt">
+			20.2130000591s		</script>
+		<script nome="racket-factorial-tail.rkt">
+			17.5820000172s		</script>
+	</execucion>
+	<execucion arg0="100000">
+		<script nome="clojure-factorial.jar">
+			3.88599991798s		</script>
+		<script nome="python-factorial.py">
+			10.1999998093s		</script>
+		<script nome="racket-factorial-aux.rkt">
+			24.4370000362s		</script>
+		<script nome="racket-factorial-tail.rkt">
+			22.7400000095s		</script>
+	</execucion>
+	<execucion arg0="110000">
+		<script nome="clojure-factorial.jar">
+			5.16799998283s		</script>
+		<script nome="python-factorial.py">
+			12.9760000706s		</script>
+		<script nome="racket-factorial-aux.rkt">
+			30.9849998951s		</script>
+		<script nome="racket-factorial-tail.rkt">
+			28.7709999084s		</script>
+	</execucion>
+</root>

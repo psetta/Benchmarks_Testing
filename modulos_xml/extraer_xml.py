@@ -8,7 +8,7 @@ import re
 
 def extraer_xml(dir_log):
 
-	arg_a_extraer = raw_input("argumento a extraer: ")
+	arg_a_extraer = raw_input("arg: ")
 
 	doc_list = os.listdir(dir_log)
 	doc_list = filter(lambda x: re.findall("log.+\.xml",x),doc_list)

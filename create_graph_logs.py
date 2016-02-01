@@ -19,7 +19,13 @@ except:
 
 #CONSTANTES
 
-dir_logs = raw_input("indica o directorio dos logs a cargar: ")
+if os.path.exists("logs"):
+	print u"dir logs:"
+	for dir in os.listdir("logs"):
+		print "\t- "+dir
+	print ""
+
+dir_logs = raw_input(">>> Logs dir: ")
 
 XML_INFO = ext.extraer_xml(dir_logs)
 
