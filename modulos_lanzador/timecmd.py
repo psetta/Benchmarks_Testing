@@ -8,13 +8,13 @@ def time_exec(comando):
 	init_time = time.time()
 	
 	try:
-		error = subprocess.check_output(comando, stderr=subprocess.STDOUT, shell=True)
+		execution = subprocess.check_output(comando, stderr=subprocess.STDOUT, shell=True)
 	except:
-		error = 1
+		execution = "error"
 
 	end_time = time.time()
 
-	if not error:
+	if not execution == "error":
 		return str(end_time-init_time)+"s"
 	else:
-		return "error"
+		return execution

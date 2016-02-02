@@ -19,13 +19,17 @@ except:
 
 #CONSTANTES
 
-if os.path.exists("logs"):
+dir_root_logs = "logs"
+
+if os.path.exists(dir_root_logs):
 	print u"dir logs:"
-	for dir in os.listdir("logs"):
+	for dir in os.listdir(dir_root_logs):
 		print "\t- "+dir
 	print ""
 
-dir_logs = raw_input(">>> Logs dir: ")
+dir_logs = raw_input(">>> Logs dir: "+dir_root_logs+"/")
+
+dir_logs = dir_root_logs+"/"+dir_logs
 
 XML_INFO = ext.extraer_xml(dir_logs)
 

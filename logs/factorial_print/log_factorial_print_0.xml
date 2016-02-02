@@ -2,22 +2,22 @@
 <root>
 	<execucion arg0="1000">
 		<script nome="clojure-factorial.jar">
-			0.670000076294s		</script>
+			0.638000011444s		</script>
 		<script nome="python-factorial.py">
-			0.0240001678467s		</script>
+			0.0950000286102s		</script>
 		<script nome="racket-factorial-aux.rkt">
-			0.34299993515s		</script>
+			0.342000007629s		</script>
 		<script nome="racket-factorial-tail.rkt">
-			0.386000156403s		</script>
+			0.37299990654s		</script>
 	</execucion>
 	<execucion arg0="10000">
 		<script nome="clojure-factorial.jar">
-			0.680000066757s		</script>
+			0.780999898911s		</script>
 		<script nome="python-factorial.py">
-			0.102999925613s		</script>
+			0.219000101089s		</script>
 		<script nome="racket-factorial-aux.rkt">
-			0.462000131607s		</script>
+			0.521999835968s		</script>
 		<script nome="racket-factorial-tail.rkt">
-			0.526000022888s		</script>
+			0.49799990654s		</script>
 	</execucion>
 </root>
