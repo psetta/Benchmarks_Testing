@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<root>
+	<execucion arg0="1000">
+		<script nome="bubble.py">
+			0.177000045776s		</script>
+		<script nome="other.py">
+			0.123999834061s		</script>
+		<script nome="sorted.py">
+			0.0759999752045s		</script>
+	</execucion>
+	<execucion arg0="2000">
+		<script nome="bubble.py">
+			0.493999958038s		</script>
+		<script nome="other.py">
+			0.262000083923s		</script>
+		<script nome="sorted.py">
+			0.0980000495911s		</script>
+	</execucion>
+	<execucion arg0="3000">
+		<script nome="bubble.py">
+			1.02899980545s		</script>
+		<script nome="other.py">
+			0.466000080109s		</script>
+		<script nome="sorted.py">
+			0.0970001220703s		</script>
+	</execucion>
+	<execucion arg0="4000">
+		<script nome="bubble.py">
+			1.74500012398s		</script>
+		<script nome="other.py">
+			0.785000085831s		</script>
+		<script nome="sorted.py">
+			0.0989999771118s		</script>
+	</execucion>
+	<execucion arg0="5000">
+		<script nome="bubble.py">
+			2.72599983215s		</script>
+		<script nome="other.py">
+			1.17499995232s		</script>
+		<script nome="sorted.py">
+			0.104000091553s		</script>
+	</execucion>
+	<execucion arg0="6000">
+		<script nome="bubble.py">
+			3.83899998665s		</script>
+		<script nome="other.py">
+			1.67000007629s		</script>
+		<script nome="sorted.py">
+			0.0490000247955s		</script>
+	</execucion>
+	<execucion arg0="7000">
+		<script nome="bubble.py">
+			5.24699997902s		</script>
+		<script nome="other.py">
+			2.17000007629s		</script>
+		<script nome="sorted.py">
+			0.0799999237061s		</script>
+	</execucion>
+	<execucion arg0="8000">
+		<script nome="bubble.py">
+			6.85399985313s		</script>
+		<script nome="other.py">
+			2.87900018692s		</script>
+		<script nome="sorted.py">
+			0.106999874115s		</script>
+	</execucion>
+	<execucion arg0="9000">
+		<script nome="bubble.py">
+			8.67000007629s		</script>
+		<script nome="other.py">
+			3.61000013351s		</script>
+		<script nome="sorted.py">
+			0.110000133514s		</script>
+	</execucion>
+	<execucion arg0="10000">
+		<script nome="bubble.py">
+			10.6690001488s		</script>
+		<script nome="other.py">
+			4.39200019836s		</script>
+		<script nome="sorted.py">
+			0.112999916077s		</script>
+	</execucion>
+</root>
