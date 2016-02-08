@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import modulos_xml.extraer_xml as ext
+import modulos_graph.extraer_xml as ext
 
 import pygame
 import os

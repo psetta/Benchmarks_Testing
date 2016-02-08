@@ -9,6 +9,9 @@ import re
 def extraer_xml(dir_log):
 
 	arg_a_extraer = raw_input("arg: ")
+	
+	if arg_a_extraer.isdigit():
+		arg_a_extraer = "arg"+arg_a_extraer
 
 	doc_list = os.listdir(dir_log)
 	doc_list = filter(lambda x: re.findall("log.+\.xml",x),doc_list)

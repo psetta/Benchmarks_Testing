@@ -45,6 +45,10 @@ args_add = [int(x) for x in args_add_text.split(" ")]
 voltas = raw_input(">>> Rounds: ")
 voltas = int(voltas)
 
+#TEMPO MÁXIMO (SEGUNDOS)
+#Se un script tarda máis deixa de executarse nas seguintes voltas
+tempo_max = False
+
 #NOME DO LOG A CREAR
 doc_log = "log_"+dir_scripts0+"_"+"0.xml"
 cont_log = 1
@@ -94,6 +98,9 @@ for volta in range(voltas):
 				log.write('\t\t<script nome="'+script+'">\n')
 				log.write('\t\t\t'+time_exec)
 				log.write('\t\t</script>\n')
+				if tempo_max and float(time_exec.split("s")[0]) > tempo_max:
+					script_list.remove(script)
+					
 			else:
 				print "\t\tcommand: "+command
 				print "\t\tCommand ERROR"

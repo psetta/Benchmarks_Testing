@@ -15,6 +15,7 @@ def time_exec(comando):
 	end_time = time.time()
 
 	if not execution == "error":
-		return str(end_time-init_time)+"s"
+		return str(end_time-init_time)
+		#return str(end_time-init_time)+"s"
 	else:
 		return execution

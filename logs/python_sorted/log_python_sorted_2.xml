@@ -1,83 +1,83 @@
 <?xml version="1.0"?>
 <root>
-	<execucion arg0="200">
+	<execucion arg0="6000">
 		<script nome="bubble.py">
-			0.0780000686646		</script>
+			3.70600008965		</script>
 		<script nome="bubble_bidireccional.py">
-			0.0939998626709		</script>
+			2.39700007439		</script>
 		<script nome="cuentas.py">
+			0.0939998626709		</script>
+		<script nome="gnome.py">
+			7.1779999733		</script>
+		<script nome="insertion.py">
+			0.993000030518		</script>
+		<script nome="pos.py">
+			1.57400012016		</script>
+		<script nome="python_sorted.py">
+			0.0940001010895		</script>
+	</execucion>
+	<execucion arg0="7000">
+		<script nome="bubble.py">
+			4.96600008011		</script>
+		<script nome="bubble_bidireccional.py">
+			3.19400000572		</script>
+		<script nome="cuentas.py">
+			0.108999967575		</script>
+		<script nome="gnome.py">
+			9.53600001335		</script>
+		<script nome="insertion.py">
+			1.34400010109		</script>
+		<script nome="pos.py">
+			2.11500000954		</script>
+		<script nome="python_sorted.py">
+			0.0939998626709		</script>
+	</execucion>
+	<execucion arg0="8000">
+		<script nome="bubble.py">
+			6.35400009155		</script>
+		<script nome="bubble_bidireccional.py">
+			4.1779999733		</script>
+		<script nome="cuentas.py">
+			0.0929999351501		</script>
+		<script nome="gnome.py">
+			12.4279999733		</script>
+		<script nome="insertion.py">
+			1.66299986839		</script>
+		<script nome="pos.py">
+			2.71700000763		</script>
+		<script nome="python_sorted.py">
+			0.108999967575		</script>
+	</execucion>
+	<execucion arg0="9000">
+		<script nome="bubble.py">
+			8.10800004005		</script>
+		<script nome="bubble_bidireccional.py">
+			5.17599987984		</script>
+		<script nome="cuentas.py">
+			0.0939998626709		</script>
+		<script nome="gnome.py">
+			15.8069999218		</script>
+		<script nome="insertion.py">
+			2.13100004196		</script>
+		<script nome="pos.py">
+			3.45000004768		</script>
+		<script nome="python_sorted.py">
 			0.0930001735687		</script>
-		<script nome="gnome.py">
-			0.0939998626709		</script>
-		<script nome="insertion.py">
-			0.077999830246		</script>
-		<script nome="pos.py">
-			0.0810000896454		</script>
-		<script nome="python_sorted.py">
-			0.0780000686646		</script>
 	</execucion>
-	<execucion arg0="400">
+	<execucion arg0="10000">
 		<script nome="bubble.py">
-			0.0940001010895		</script>
+			10.0650000572		</script>
 		<script nome="bubble_bidireccional.py">
-			0.0939998626709		</script>
+			6.25199985504		</script>
 		<script nome="cuentas.py">
-			0.0460000038147		</script>
-		<script nome="gnome.py">
-			0.109999895096		</script>
-		<script nome="insertion.py">
-			0.104000091553		</script>
-		<script nome="pos.py">
-			0.077999830246		</script>
-		<script nome="python_sorted.py">
-			0.0929999351501		</script>
-	</execucion>
-	<execucion arg0="600">
-		<script nome="bubble.py">
-			0.110000133514		</script>
-		<script nome="bubble_bidireccional.py">
-			0.0939998626709		</script>
-		<script nome="cuentas.py">
-			0.0940001010895		</script>
-		<script nome="gnome.py">
-			0.162999868393		</script>
-		<script nome="insertion.py">
-			0.0789999961853		</script>
-		<script nome="pos.py">
-			0.109000205994		</script>
-		<script nome="python_sorted.py">
-			0.077999830246		</script>
-	</execucion>
-	<execucion arg0="800">
-		<script nome="bubble.py">
-			0.125		</script>
-		<script nome="bubble_bidireccional.py">
-			0.125		</script>
-		<script nome="cuentas.py">
-			0.0780000686646		</script>
-		<script nome="gnome.py">
-			0.210000038147		</script>
-		<script nome="insertion.py">
 			0.108999967575		</script>
-		<script nome="pos.py">
-			0.110000133514		</script>
-		<script nome="python_sorted.py">
-			0.0929999351501		</script>
-	</execucion>
-	<execucion arg0="1000">
-		<script nome="bubble.py">
-			0.18700003624		</script>
-		<script nome="bubble_bidireccional.py">
-			0.140999794006		</script>
-		<script nome="cuentas.py">
-			0.0940001010895		</script>
 		<script nome="gnome.py">
-			0.266000032425		</script>
+			19.5729999542		</script>
 		<script nome="insertion.py">
-			0.108999967575		</script>
+			2.62699985504		</script>
 		<script nome="pos.py">
-			0.165999889374		</script>
+			4.22600007057		</script>
 		<script nome="python_sorted.py">
-			0.0620000362396		</script>
+			0.0939998626709		</script>
 	</execucion>
 </root>

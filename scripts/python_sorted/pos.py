@@ -17,6 +17,6 @@ def sort_other(list):
 	return salida
 			
 cont = int(sys.argv[1])			
-lista = [random.randint(0,10000) for x in range(cont)]
+lista = [random.randint(0,cont) for x in range(cont)]
 
-print sort_other(lista)
+sort_other(lista)
