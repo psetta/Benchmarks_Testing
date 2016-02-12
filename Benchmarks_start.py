@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import sys
 import os
 import re
 import time
@@ -7,6 +8,17 @@ import modulos_lanzador.timecmd as timecmd
 
 dir_root_scrips = "scripts"
 dir_root_logs = "logs"
+
+#GARDAR LOGS COMA ('XML' ou 'JSON'):
+formato_log = "json"
+
+if formato_log == "json":
+	import json
+elif formato_log == "xml":
+	pass
+else:
+	print "ERROR - Indica formato de log"
+	sys.exit()
 
 if not os.path.exists(dir_root_scrips):
 	print u"creating directory /"+dir_root_scrips+"..."
@@ -50,15 +62,21 @@ voltas = int(voltas)
 tempo_max = False
 
 #NOME DO LOG A CREAR
-doc_log = "log_"+dir_scripts0+"_"+"0.xml"
+doc_log = "log_"+dir_scripts0+"_"+"0."+formato_log
 cont_log = 1
 while os.path.exists(dir_log+"/"+doc_log):
-	doc_log = "log_"+dir_scripts0+"_"+str(cont_log)+".xml"
+	doc_log = "log_"+dir_scripts0+"_"+str(cont_log)+"."+formato_log
 	cont_log += 1
 
 log = open(dir_log+"/"+doc_log, "w")
-log.write('<?xml version="1.0"?>\n')
-log.write('<root>\n')
+
+if formato_log == "xml":
+	log.write('<?xml version="1.0"?>\n')
+	log.write('<root>\n')
+else:
+	dict_execucions = {}
+	for script in script_list:
+		dict_execucions[script] = []
 
 print u"Benchmarks of:"
 for script in script_list:
@@ -70,19 +88,25 @@ for volta in range(voltas):
 	execution_string = ""
 	for arg in range(len(args)):
 		execution_string += ' arg'+str(arg)+'="'+str(args[arg])+'"'
-	log.write('\t<execucion'+execution_string+'>\n')
-	for script in script_list:
 		
+	if formato_log == "xml":
+		log.write('\t<execucion'+execution_string+'>\n')
+		
+	for script in script_list:
 		print "\t"+script
-	
 		formato = re.findall("\..[^\.]+$",script)[0]
 		
+		#FORMATOS DE ARQUIVOS QUE SE PODEN EXECUTAR
+		#PYTHON
 		if formato == ".py":
 			app = "python"
+		#RACKET
 		elif formato == ".rkt":
 			app = "racket"
+		#JAVA
 		elif formato == ".jar":
 			app = "java -jar"
+		#EXECUTABLE DE WINDOWS .EXE
 		elif formato == ".exe":
 			app = "start /WAIT"
 		else:
@@ -95,9 +119,14 @@ for volta in range(voltas):
 			if not time_exec == "error":
 				print "\t\tcommand: "+command
 				print "\t\ttime: "+time_exec
-				log.write('\t\t<script nome="'+script+'">\n')
-				log.write('\t\t\t'+time_exec)
-				log.write('\t\t</script>\n')
+				
+				if formato_log == "exe":
+					log.write('\t\t<script nome="'+script+'">\n')
+					log.write('\t\t\t'+time_exec)
+					log.write('\t\t</script>\n')
+				else:
+					dict_execucions[script].append({"args":args[:],"time":time_exec})
+						
 				if tempo_max and float(time_exec.split("s")[0]) > tempo_max:
 					script_list.remove(script)
 					
@@ -107,11 +136,15 @@ for volta in range(voltas):
 		else:
 			print u"\t\tUnknown file extension: "+script
 		
-		time.sleep(1.5)
-		
-	log.write('\t</execucion>\n')
+		time.sleep(2)
+	
+	if formato_log == "exe":
+		log.write('\t</execucion>\n')
 	args = [x+y for x,y in zip(args,args_add)]
 	
+if formato_log == "exe":
+	log.write('</root>')
+else:
+	json_log = json.dump(dict_execucions,log)
 	
-log.write('</root>')
 log.close()
