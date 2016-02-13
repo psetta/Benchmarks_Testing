@@ -68,15 +68,14 @@ while os.path.exists(dir_log+"/"+doc_log):
 	doc_log = "log_"+dir_scripts0+"_"+str(cont_log)+"."+formato_log
 	cont_log += 1
 
-log = open(dir_log+"/"+doc_log, "w")
-
 if formato_log == "xml":
-	log.write('<?xml version="1.0"?>\n')
-	log.write('<root>\n')
+	xml_execusions = ""
+	xml_execusions += '<?xml version="1.0"?>\n'
+	xml_execusions += '<root>\n'
 else:
-	dict_execucions = {}
+	json_execucions = {}
 	for script in script_list:
-		dict_execucions[script] = []
+		json_execucions[script] = []
 
 print u"Benchmarks of:"
 for script in script_list:
@@ -90,7 +89,7 @@ for volta in range(voltas):
 		execution_string += ' arg'+str(arg)+'="'+str(args[arg])+'"'
 		
 	if formato_log == "xml":
-		log.write('\t<execucion'+execution_string+'>\n')
+		xml_execusions += '\t<execucion'+execution_string+'>\n'
 		
 	for script in script_list:
 		print "\t"+script
@@ -120,12 +119,12 @@ for volta in range(voltas):
 				print "\t\tcommand: "+command
 				print "\t\ttime: "+time_exec
 				
-				if formato_log == "exe":
-					log.write('\t\t<script nome="'+script+'">\n')
-					log.write('\t\t\t'+time_exec)
-					log.write('\t\t</script>\n')
+				if formato_log == "xml":
+					xml_execusions += '\t\t<script nome="'+script+'">\n'
+					xml_execusions += '\t\t\t'+time_exec
+					xml_execusions += '\t\t</script>\n'
 				else:
-					dict_execucions[script].append({"args":args[:],"time":time_exec})
+					json_execucions[script].append([args[:],time_exec])
 						
 				if tempo_max and float(time_exec.split("s")[0]) > tempo_max:
 					script_list.remove(script)
@@ -138,13 +137,16 @@ for volta in range(voltas):
 		
 		time.sleep(2)
 	
-	if formato_log == "exe":
-		log.write('\t</execucion>\n')
+	if formato_log == "xml":
+		xml_execusions += '\t</execucion>\n'
 	args = [x+y for x,y in zip(args,args_add)]
-	
-if formato_log == "exe":
-	log.write('</root>')
+
+log = open(dir_log+"/"+doc_log, "w")
+
+if formato_log == "xml":
+	xml_execusions += '</root>'
+	log.write(xml_execusions)
 else:
-	json_log = json.dump(dict_execucions,log)
+	json_log = json.dump(json_execucions,log)
 	
 log.close()

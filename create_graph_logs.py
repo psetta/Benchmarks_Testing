@@ -5,6 +5,8 @@ import modulos_graph.extraer_xml as ext
 import pygame
 import os
 import sys
+import json
+import re
 from pygame.locals import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
@@ -31,27 +33,89 @@ dir_logs = raw_input(">>> Logs dir: "+dir_root_logs+"/")
 
 dir_logs = dir_root_logs+"/"+dir_logs
 
-XML_INFO = ext.extraer_xml(dir_logs)
+arg_a_extraer = raw_input(">>> Argument to extract (Example: 'arg0' or '0'): ")
 
+#EXTRAER LOGS
+XML_LOG = ext.extraer_xml(dir_logs,arg_a_extraer)
+JSON_LOG = []
+
+for doc in os.listdir(dir_logs):
+	if re.findall("log.+\.json",doc):
+		try:
+			JSON_LOG.append(json.load(open(dir_logs+"/"+doc,"r")))
+		except:
+			print u"Error ao cargar o log: "+doc
+
+#LISTA DONDE GARDAMOS OS NOMES DOS SCRIPTS
+scripts_list = []
+#LISTA DONDE GARDAMOS OS ARGUMENTOS
+arguments_list = []
+#LISTA DONDE GARDAMOS OS TEMPOS
+time_list = []
+
+#DICCIONARIO DE DATOS DOS LOGS XML
 dict_xml = {}
-
-for bench in XML_INFO:
-	if bench[0] in dict_xml:
-		dict_xml[bench[0]].append(bench[1:3])
+for bench in XML_LOG:
+	script = bench[0]
+	argumento = float(bench[1])
+	tempo = float(bench[2])
+	arguments_list.append(argumento)
+	time_list.append(tempo)
+	if script in dict_xml:
+		dict_xml[script].append([argumento,tempo])
 	else:
-		dict_xml[bench[0]] = []
-		dict_xml[bench[0]].append(bench[1:3])
+		scripts_list.append(script)
+		dict_xml[script] = []
+		dict_xml[script].append([argumento,tempo])
 
-for script in dict_xml:
+#DICCIONARIOS DE DATOS DOS LOGS JSON
+
+arg_a_extraer = int(re.findall("\d+",arg_a_extraer)[0])
+
+dict_json = {}
+for benchs in JSON_LOG:
+	for script in benchs:
+		for t in benchs[script]:
+			argumento = float(t[0][arg_a_extraer])
+			tempo = float(t[1])
+			arguments_list.append(argumento)
+			time_list.append(tempo)
+			if script in dict_json:
+				dict_json[script].append([argumento,tempo])
+			else:
+				if not script in scripts_list:
+					scripts_list.append(script)
+				dict_json[script] = []
+				dict_json[script].append([argumento,tempo])
+				
+#DICCIONARIO TOTAL DE DATOS
+dict_total_logs = {}
+
+for script in scripts_list:
+	dict_total_logs[script] = []
+
+dict_correctos = []
+if dict_xml:
+	dict_correctos.append(dict_xml)
+if dict_json:
+	dict_correctos.append(dict_json)
+
+for script in scripts_list:
+	for dict in dict_correctos:
+		dict_total_logs[script] += (dict[script])
+
+#MOSTRAR TODOS OS DATOS
+print u":"*60
+for script in dict_total_logs:
 	print ">>> "+script
-	for bench in sorted(dict_xml[script],key=lambda x: float(x[0])):
+	for bench in sorted(dict_total_logs[script],key=lambda x: float(x[0])):
 		print "\t"+str(bench)
 	
-MAYOR_X = float(max(XML_INFO,key=lambda x: float(x[1]))[1])
-MAYOR_Y = float(max(XML_INFO,key=lambda x: float(x[2]))[2])
+MAYOR_X = max(arguments_list)
+MAYOR_Y = max(time_list)
 
-MENOR_X =float(min(XML_INFO,key=lambda x: float(x[1]))[1])
-MENOR_Y = float(min(XML_INFO,key=lambda x: float(x[2]))[2])
+MENOR_X = min(arguments_list)
+MENOR_Y = min(time_list)
 
 ANCHO_VENTANA = 800
 ALTO_VENTANA = 600
@@ -120,7 +184,7 @@ def main():
 			ID_LISTA_TEXTO = glGenLists(1)
 			crear_gllist_texto(ID_LISTA_TEXTO)
 			zoom_ant = zoom
-			temp = 60
+			temp = 30
 		else:
 			temp = max(1,temp-1)
 		
@@ -263,7 +327,7 @@ def limpiar_ventana():
 	glMatrixMode(GL_MODELVIEW)
 	
 def debuxar_linha(vertices,color):
-	glLineWidth(1)
+	glLineWidth(1.5)
 	glColor4f(color[0],color[1],color[2],color[3])
 	glBegin(GL_LINES)
 	for v in range(len(vertices)-1):
@@ -292,6 +356,7 @@ def debuxar_rect(vertices,color):
 def crear_gllist_texto(id):
 	glNewList(id, GL_COMPILE)
 	glLoadIdentity()
+	glLineWidth(1)
 	salto_rango_x = max(int(10/zoom),int(((EJE_X[1]-EJE_X[0])/10)/zoom)*10)
 	salto_rango_y = max(int(10/zoom),int(((EJE_Y[1]-EJE_Y[0])/10)/zoom)*10)
 	frango_x = [i/10.0 for i in range(int(EJE_X[0])*10,
@@ -312,12 +377,11 @@ def crear_gllist_linhas(id):
 	glNewList(id, GL_COMPILE)
 	glLoadIdentity()
 	color_linha = [1,1,0,0.6]
-	for script in dict_xml:
-		vertices = sorted(dict_xml[script],key=lambda x: float(x[0]))
+	for script in dict_total_logs:
+		vertices = sorted(dict_total_logs[script],key=lambda x: float(x[0]))
 		debuxar_linha(vertices,color_linha)
 		debuxar_puntos(vertices,color_linha[:3]+[1])
 		x_f,y_f = vertices[len(vertices)-1]
-		#drawText(x_f,y_f,script,20*zoom)
 		drawText(float(x_f),float(y_f),script,20*zoom)
 		color_linha[2] += 0.2
 		color_linha[1] -= 0.1

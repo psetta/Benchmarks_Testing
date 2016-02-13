@@ -1,83 +1,73 @@
 <?xml version="1.0"?>
 <root>
-	<execucion arg0="200">
+	<execucion arg0="3000">
 		<script nome="bubble.py">
-			0.0780000686646		</script>
+			0.985000133514		</script>
 		<script nome="bubble_bidireccional.py">
-			0.0939998626709		</script>
+			0.671999931335		</script>
 		<script nome="cuentas.py">
-			0.0930001735687		</script>
-		<script nome="gnome.py">
 			0.0939998626709		</script>
+		<script nome="gnome.py">
+			1.79700016975		</script>
 		<script nome="insertion.py">
-			0.077999830246		</script>
+			0.327999830246		</script>
 		<script nome="pos.py">
-			0.0810000896454		</script>
-		<script nome="python_sorted.py">
-			0.0780000686646		</script>
+			0.46799993515		</script>
 	</execucion>
-	<execucion arg0="400">
+	<execucion arg0="3800">
 		<script nome="bubble.py">
-			0.0940001010895		</script>
+			1.53099989891		</script>
 		<script nome="bubble_bidireccional.py">
-			0.0939998626709		</script>
+			0.983999967575		</script>
 		<script nome="cuentas.py">
-			0.0460000038147		</script>
-		<script nome="gnome.py">
-			0.109999895096		</script>
-		<script nome="insertion.py">
-			0.104000091553		</script>
-		<script nome="pos.py">
-			0.077999830246		</script>
-		<script nome="python_sorted.py">
-			0.0929999351501		</script>
-	</execucion>
-	<execucion arg0="600">
-		<script nome="bubble.py">
 			0.110000133514		</script>
-		<script nome="bubble_bidireccional.py">
-			0.0939998626709		</script>
-		<script nome="cuentas.py">
-			0.0940001010895		</script>
 		<script nome="gnome.py">
-			0.162999868393		</script>
+			2.92199993134		</script>
 		<script nome="insertion.py">
-			0.0789999961853		</script>
+			0.43700003624		</script>
 		<script nome="pos.py">
-			0.109000205994		</script>
-		<script nome="python_sorted.py">
-			0.077999830246		</script>
+			0.671999931335		</script>
 	</execucion>
-	<execucion arg0="800">
+	<execucion arg0="4600">
 		<script nome="bubble.py">
-			0.125		</script>
+			2.17199993134		</script>
 		<script nome="bubble_bidireccional.py">
-			0.125		</script>
+			1.40599989891		</script>
 		<script nome="cuentas.py">
-			0.0780000686646		</script>
-		<script nome="gnome.py">
-			0.210000038147		</script>
-		<script nome="insertion.py">
-			0.108999967575		</script>
-		<script nome="pos.py">
 			0.110000133514		</script>
-		<script nome="python_sorted.py">
-			0.0929999351501		</script>
-	</execucion>
-	<execucion arg0="1000">
-		<script nome="bubble.py">
-			0.18700003624		</script>
-		<script nome="bubble_bidireccional.py">
-			0.140999794006		</script>
-		<script nome="cuentas.py">
-			0.0940001010895		</script>
 		<script nome="gnome.py">
-			0.266000032425		</script>
+			4.2389998436		</script>
 		<script nome="insertion.py">
-			0.108999967575		</script>
+			0.62700009346		</script>
 		<script nome="pos.py">
-			0.165999889374		</script>
-		<script nome="python_sorted.py">
-			0.0620000362396		</script>
+			0.953000068665		</script>
+	</execucion>
+	<execucion arg0="5400">
+		<script nome="bubble.py">
+			3.00299978256		</script>
+		<script nome="bubble_bidireccional.py">
+			1.86000013351		</script>
+		<script nome="cuentas.py">
+			0.0939998626709		</script>
+		<script nome="gnome.py">
+			5.72200012207		</script>
+		<script nome="insertion.py">
+			0.828000068665		</script>
+		<script nome="pos.py">
+			1.28099989891		</script>
+	</execucion>
+	<execucion arg0="6200">
+		<script nome="bubble.py">
+			3.9279999733		</script>
+		<script nome="bubble_bidireccional.py">
+			2.49899983406		</script>
+		<script nome="cuentas.py">
+			0.077999830246		</script>
+		<script nome="gnome.py">
+			7.625		</script>
+		<script nome="insertion.py">
+			1.06200003624		</script>
+		<script nome="pos.py">
+			1.67100000381		</script>
 	</execucion>
 </root>
