@@ -10,7 +10,7 @@ dir_root_scrips = "scripts"
 dir_root_logs = "logs"
 
 #GARDAR LOGS COMA ('XML' ou 'JSON'):
-formato_log = "json"
+formato_log = "xml"
 
 if formato_log == "json":
 	import json
@@ -47,15 +47,25 @@ if not os.path.exists(dir_log):
 
 #ARGUMENTOS A PASAR AO EXECUTAR OS SCRIPTS
 args_text = raw_input(u">>> Start arguments: ")
-args = [int(x) for x in args_text.split(" ")]
+if args_text:
+	args = [int(x) for x in args_text.split(" ")]
+else:
+	args = False
 
 #INCREMENTO DOS ARGUMENTOS EN CADA VOLTA
 args_add_text = raw_input(u">>> Increase arguments: ")
-args_add = [int(x) for x in args_add_text.split(" ")]
+if args_add_text:
+	args_add = [int(x) for x in args_add_text.split(" ")]
 
 #VOLTAS QUE DA O BUCLE
 voltas = raw_input(">>> Rounds: ")
-voltas = int(voltas)
+while not voltas:
+	voltas = raw_input(">>> Rounds: ")
+	
+try:
+	voltas = int(voltas)
+except:
+	print "ERROR - require integer"
 
 #TEMPO MÁXIMO (SEGUNDOS)
 #Se un script tarda máis deixa de executarse nas seguintes voltas
@@ -69,9 +79,9 @@ while os.path.exists(dir_log+"/"+doc_log):
 	cont_log += 1
 
 if formato_log == "xml":
-	xml_execusions = ""
-	xml_execusions += '<?xml version="1.0"?>\n'
-	xml_execusions += '<root>\n'
+	xml_execucions = ""
+	xml_execucions += '<?xml version="1.0"?>\n'
+	xml_execucions += '<root>\n'
 else:
 	json_execucions = {}
 	for script in script_list:
@@ -83,13 +93,17 @@ for script in script_list:
 
 for volta in range(voltas):
 	time.sleep(3)
-	print ">>> "+ str(volta+1)+"/"+str(voltas)," args: "+" ".join(map(str,args))
+	if args:
+		print ">>> "+ str(volta+1)+"/"+str(voltas)," args: "+" ".join(map(str,args))
+	else:
+		print ">>> "+ str(volta+1)+"/"+str(voltas)
 	execution_string = ""
-	for arg in range(len(args)):
-		execution_string += ' arg'+str(arg)+'="'+str(args[arg])+'"'
+	if args:
+		for arg in range(len(args)):
+			execution_string += ' arg'+str(arg)+'="'+str(args[arg])+'"'
 		
 	if formato_log == "xml":
-		xml_execusions += '\t<execucion'+execution_string+'>\n'
+		xml_execucions += '\t<execucion'+execution_string+'>\n'
 		
 	for script in script_list:
 		print "\t"+script
@@ -97,7 +111,7 @@ for volta in range(voltas):
 		
 		#FORMATOS DE ARQUIVOS QUE SE PODEN EXECUTAR
 		#PYTHON
-		if formato == ".py":
+		if formato in [".py",".pyc",".pyw"]:
 			app = "python"
 		#RACKET
 		elif formato == ".rkt":
@@ -112,19 +126,25 @@ for volta in range(voltas):
 			app = "unknown"
 		
 		if not app == "unknown":
-			command = (app+(' ' if app else '')+dir_scripts+"/"+
+			if args:
+				command = (app+(' ' if app else '')+dir_scripts+"/"+
 						script+' '+" ".join(map(str,args)))
+			else:
+				command = app+(' ' if app else '')+dir_scripts+"/"+script
 			time_exec = timecmd.time_exec(command)
 			if not time_exec == "error":
 				print "\t\tcommand: "+command
 				print "\t\ttime: "+time_exec
 				
 				if formato_log == "xml":
-					xml_execusions += '\t\t<script nome="'+script+'">\n'
-					xml_execusions += '\t\t\t'+time_exec
-					xml_execusions += '\t\t</script>\n'
+					xml_execucions += '\t\t<script nome="'+script+'">\n'
+					xml_execucions += '\t\t\t'+time_exec
+					xml_execucions += '\t\t</script>\n'
 				else:
-					json_execucions[script].append([args[:],time_exec])
+					if args:
+						json_execucions[script].append([args[:],time_exec])
+					else:
+						json_execucions[script].append([args,time_exec])
 						
 				if tempo_max and float(time_exec.split("s")[0]) > tempo_max:
 					script_list.remove(script)
@@ -138,14 +158,15 @@ for volta in range(voltas):
 		time.sleep(2)
 	
 	if formato_log == "xml":
-		xml_execusions += '\t</execucion>\n'
-	args = [x+y for x,y in zip(args,args_add)]
+		xml_execucions += '\t</execucion>\n'
+	if args:
+		args = [x+y for x,y in zip(args,args_add)]
 
 log = open(dir_log+"/"+doc_log, "w")
 
 if formato_log == "xml":
-	xml_execusions += '</root>'
-	log.write(xml_execusions)
+	xml_execucions += '</root>'
+	log.write(xml_execucions)
 else:
 	json_log = json.dump(json_execucions,log)
 	
