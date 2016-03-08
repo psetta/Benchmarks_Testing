@@ -123,6 +123,9 @@ ALTO_VENTANA = 600
 EJE_X = [int(MENOR_X),round(MAYOR_X+0.5)]
 EJE_Y = [int(MENOR_Y),round(MAYOR_Y+0.5)]
 
+EJE_X[1] = round((EJE_X[1]-EJE_X[0])*1.05)
+EJE_Y[1] = round((EJE_Y[1]-EJE_Y[0])*1.05)
+
 EJE_X_AUM = (EJE_X[1]-EJE_X[0])/10
 EJE_Y_AUM = (EJE_Y[1]-EJE_Y[0])/10
 
