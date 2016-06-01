@@ -4,16 +4,18 @@ import sys
 import random
 
 def sort_casilleros(list):
-	dict_casilleros = {}
+	min_l = min(list)
+	max_l = max(list)
+	list_casilleros = [0 for x in range(min_l,max_l+1)]
 	salida = []
 	for n in list:
-		if n in dict_casilleros:
-			dict_casilleros[n] += 1
-		else:
-			dict_casilleros[n] = 1
-	for n in dict_casilleros:
-		for i in range(dict_casilleros[n]):
-			salida.append(n)
+		list_casilleros[n-min_l] += 1
+	ini = min_l
+	for n in list_casilleros:
+		if n:
+			for x in range(n):
+				salida.append(ini)
+		ini += 1
 	return salida
 			
 cont = int(sys.argv[1])			
