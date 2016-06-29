@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<root>
+	<execucion arg0="10000">
+		<script nome="quicksort.py">
+			0.155999898911		</script>
+		<script nome="quicksort_estevo_01.py">
+			0.154000043869		</script>
+		<script nome="quicksort_estevo_02.py">
+			0.141999959946		</script>
+	</execucion>
+	<execucion arg0="20000">
+		<script nome="quicksort.py">
+			0.243999958038		</script>
+		<script nome="quicksort_estevo_01.py">
+			0.174999952316		</script>
+		<script nome="quicksort_estevo_02.py">
+			0.197000026703		</script>
+	</execucion>
+	<execucion arg0="30000">
+		<script nome="quicksort.py">
+			0.34500002861		</script>
+		<script nome="quicksort_estevo_01.py">
+			0.28200006485		</script>
+		<script nome="quicksort_estevo_02.py">
+			0.226999998093		</script>
+	</execucion>
+	<execucion arg0="40000">
+		<script nome="quicksort.py">
+			0.46799993515		</script>
+		<script nome="quicksort_estevo_01.py">
+			0.31299996376		</script>
+		<script nome="quicksort_estevo_02.py">
+			0.27999997139		</script>
+	</execucion>
+	<execucion arg0="50000">
+		<script nome="quicksort.py">
+			0.554999828339		</script>
+		<script nome="quicksort_estevo_01.py">
+			0.361000061035		</script>
+		<script nome="quicksort_estevo_02.py">
+			0.353000164032		</script>
+	</execucion>
+	<execucion arg0="60000">
+		<script nome="quicksort.py">
+			0.698999881744		</script>
+		<script nome="quicksort_estevo_01.py">
+			0.419000148773		</script>
+		<script nome="quicksort_estevo_02.py">
+			0.40900015831		</script>
+	</execucion>
+	<execucion arg0="70000">
+		<script nome="quicksort.py">
+			0.875		</script>
+		<script nome="quicksort_estevo_01.py">
+			0.480000019073		</script>
+		<script nome="quicksort_estevo_02.py">
+			0.43700003624		</script>
+	</execucion>
+	<execucion arg0="80000">
+		<script nome="quicksort.py">
+			0.990999937057		</script>
+		<script nome="quicksort_estevo_01.py">
+			0.548000097275		</script>
+		<script nome="quicksort_estevo_02.py">
+			0.496000051498		</script>
+	</execucion>
+	<execucion arg0="90000">
+		<script nome="quicksort.py">
+			1.16200017929		</script>
+		<script nome="quicksort_estevo_01.py">
+			0.588000059128		</script>
+		<script nome="quicksort_estevo_02.py">
+			0.545000076294		</script>
+	</execucion>
+	<execucion arg0="100000">
+		<script nome="quicksort.py">
+			1.37999987602		</script>
+		<script nome="quicksort_estevo_01.py">
+			0.677999973297		</script>
+		<script nome="quicksort_estevo_02.py">
+			0.614000082016		</script>
+	</execucion>
+</root>
